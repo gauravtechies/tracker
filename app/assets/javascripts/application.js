@@ -15,7 +15,7 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
     $('#stock-lookup-form').on('ajax:complete', function(event, data, status){
       $('#results').html(data.responseText)
     })

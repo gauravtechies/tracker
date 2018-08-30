@@ -12,6 +12,9 @@ class Stock < ActiveRecord::Base
         # new( ticker: looked_up_stock.company_name)
         
     end
+    def self.find_by_ticker(ticker_symbol)
+        where(ticker: ticker_symbol).first
+    end
    
   
 end

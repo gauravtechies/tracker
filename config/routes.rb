@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "user/registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-
+  get 'my_friends', to: 'users#my_friends'
   # Example of regular route:
   get 'my_portfolio' => 'users#my_portfolio'
   get 'search_stocks' => 'stocks#search'
-  resources :user_stocks,only: [:create]
+  resources :user_stocks,only: [:create, :destroy]
+  resources :users, only: [:show]
+  resources :friendships
+  get 'search_friends', to: 'users#search'
+  post 'add_friend', to: 'users#add_friend'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
