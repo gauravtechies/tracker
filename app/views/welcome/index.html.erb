@@ -1,7 +1,7 @@
 <h1>Welcome to tracker</h1>
-<% if !current_user %>
+<% if current_user %>
   <h3>Welcome: <%= current_user.email %></h3>
-<% else %>
+<% end %>
   <div class="jumbotron">
     <h2>Welcome to the Tracker App!</h2>
     <p class="lead">
@@ -11,39 +11,39 @@
 
   <div class="row">
     <div class="plans clearfix">
-      <div class="col-lg-3 col-lg-offset-3 plan">
-        <h2>Premium Plan</h2>
-        <div class="price pull-right">
-          Price: $10
-        </div>
+      <div class="col-lg-4 col-lg-offset-2 plan">
+        <h2>Free Plan</h2>
+      
         <div class="features">
           <ul>
-            <li>Unlimited Image Uploads</li>
-            <li>Responsive design</li>
+            <li>10 friends allowed</li>
+            <li>Upto 10 stocks you can track</li>
             <li>Access anywhere</li>
           </ul>
         </div>
         <p>
-          <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up' %>
+          <% if current_user %>
+            <%= link_to 'Get started',  my_portfolio_path, class: 'btn btn-primary sign-up' %>
+          <% else %>
+            <%= link_to 'Sign Up for free', new_user_registration_path, class: 'btn btn-primary sign-up' %>
+          <% end %>
         </p>
       </div>
-      <div class="col-lg-3 plan">
-        <h2>Amaze Plan</h2>
-        <div class="price pull-right">
-          Price: $20
-        </div>
+      <div class="col-lg-4 plan">
+        <h2>Amaze Plan <small> (Price: $20)</small> </h2>
+       
         <div class="features">
           <ul>
-            <li>Unlimited Image Uploads</li>
-            <li>Responsive design</li>
+            <li>Unlimited Friends</li>
+            <li>Unlimited Stock track</li>
             <li>Access anywhere</li>
-            <li class='extra'>Unlimited projects</li>
           </ul>
         </div>
         <p>
+        <% if !current_user %>
           <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up' %>
+        <% end %>
         </p>
       </div>
     </div>
   </div>
-<% end %>

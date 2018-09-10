@@ -1,0 +1,3 @@
+export STRIPE_TEST_SECRET_KEY=yoursecrettestkeyfromstripe
+
+export STRIPE_TEST_PUBLISHABLE_KEY=pk_test_eilL8BkRZeF0ox1mWd0k5A2B
